@@ -18,14 +18,16 @@ jobs:
 
     
     test_job_2:
+        needs: build_job_1
         runs-on: ubuntu-latest
         steps:
-        - name: Checkout Repository
+        - name: search for dragon in text file
           run:  |
             sleep 10
             grep -i "dragon" dragon.txt
 
     deploy_job_3:
+        needs: test_job_2
         runs-on: ubuntu-latest
         steps:
         - name: Read File
